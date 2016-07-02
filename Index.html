@@ -1,0 +1,161 @@
+<!-- Copyright © 2016, Xerxes Langerudi. All rights reserved. -->
+
+<!doctype html>
+
+<style>
+
+.body
+{
+	text-align: center;
+	color: grey;
+}
+
+#decisionsView
+{
+	display: inline-block;
+	width: 300px;
+	text-align: left;
+}
+
+.decision
+{
+	display: inline-block;
+}
+
+.menu
+{
+	text-align: right;
+	height: 40px;
+}
+
+.headline
+{
+	font-size: 30px;
+}
+
+#update
+{
+	display: inline-block;
+	width: 270px;
+	text-align: left;
+}
+
+</style>
+
+<html>
+<head>
+	<title>Decision Maker - Overview</title>
+</head>
+<body class="body">
+
+<div class="menu"><button onclick="help(1)">Help</button></div>
+
+<div class="menu"><a href="Decision.html">New</a></div>
+
+<div id="decisionsView">
+	<div class="headline">All Decisions</div>
+</div>
+
+<script type="text/javascript">
+
+function help()
+{
+	if (confirm("Click OK to get sample data"))
+	{
+		addSampleData();
+
+		document.location = document.location;
+	}
+}
+
+function remove(id)
+{
+	var decisions = [];
+
+	if (JSON.parse(localStorage.getItem("decisions")) != null)
+	{
+		decisions = JSON.parse(localStorage.getItem("decisions"));
+	}
+
+	decisions.splice(id, 1);
+
+	localStorage.setItem("decisions", JSON.stringify(decisions));
+
+	document.location = document.location;
+}
+
+function update(id)
+{
+	localStorage.setItem("id", JSON.stringify(id));
+}
+
+function addSampleData()
+{
+	var decisions = [];
+
+	if (JSON.parse(localStorage.getItem("decisions")) != null)
+	{
+		decisions = JSON.parse(localStorage.getItem("decisions"));
+	}
+
+	decisions.push({category: "Investment", subject: "Property purchase", take1: "Low risk", take2: "Finance available", take3: "Essential need", give1: "Low margin", give2: "Time consuming", give3: "Not liquid", finalDecision: "For", comment: "10 will be purchased"});
+
+	decisions.push({category: "Food", subject: "Cooking", take1: "Tasty", take2: "Healthy", take3: "Tantamount to physical exercise", give1: "Will be nicknamed housewife", give2: "Time consuming", give3: "Could burn fingers", finalDecision: "For", comment: "My cat will be happy as well"});
+
+	localStorage.setItem("decisions", JSON.stringify(decisions));
+
+}
+
+	var decisions = [];
+	var categories = [];
+
+	decisions = JSON.parse(localStorage.getItem("decisions"))
+
+	var decisionsView = document.querySelector("#decisionsView");
+
+
+	var categoryView;
+
+	for (var i = 0; decisions[i] != undefined; i++)
+	{
+		if (categories.indexOf(decisions[i].category) == -1)
+		{
+			categories.push(decisions[i].category);
+
+			categoryView = document.createElement("div");
+
+			categoryView.id = decisions[i].category;
+
+			decisionsView.appendChild(categoryView);
+
+			var categoryName = document.createElement("div")
+
+			categoryName.textContent = decisions[i].category;
+
+			categoryView.appendChild(categoryName);
+		}
+
+		var decisionView = document.createElement("div");
+		var updateButton = document.createElement("a");
+		var removeButton = document.createElement("button");
+
+		updateButton.textContent =  decisions[i].subject;
+		updateButton.href = "Decision.html";
+		updateButton.id = "update";
+		updateButton.setAttribute("onclick", "update(" + i + ")");
+
+		removeButton.textContent =  "-";
+		removeButton.setAttribute("onclick", "remove(" + i + ")");
+
+		categoryView = document.querySelector("#" + decisions[i].category);
+
+		decisionView.appendChild(updateButton);
+		decisionView.appendChild(removeButton);
+		categoryView.appendChild(decisionView);
+	}
+
+</script>
+
+</body>
+</html>
+
