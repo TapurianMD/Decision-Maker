@@ -1,0 +1,221 @@
+<!-- Copyright © 2016, Xerxes Langerudi. All rights reserved. -->
+
+<!doctype html>
+
+<style>
+
+.body
+{
+	text-align: center;
+	color: grey;
+}
+
+.decisionMaker
+{
+
+	text-align: left;
+	width: 500px;
+	display: inline-block;
+}
+
+.category
+{
+	font-size: 30px;
+	display: inline-block;
+	width: 200px;
+}
+
+.categoryHolder
+{
+	display: inline-block;
+	width: 300px;
+}
+
+.subject
+{
+	display: inline-block;
+	width: 200px;
+}
+
+.subjectHolder
+{
+	display: inline-block;
+	width: 300px;
+}
+
+.numbering
+{
+	display: inline-block;
+	width: 200px;
+}
+
+.textHolder
+{
+	display: inline-block;
+	width: 300px;
+}
+
+.finalDecision
+{
+	display: inline-block;
+	width: 200px;
+}
+
+.radioHolder
+{
+	display: inline-block;
+	width: 300px;
+}
+
+.comment
+{
+	display: inline-block;
+	width: 200px;
+}
+
+#updateButton
+{
+	display: none;
+}
+
+</style>
+
+<html>
+<head>
+	<title>Decision Maker</title>
+</head>
+<body class="body">
+
+	<div class="decisionMaker">
+
+		<form method="post">
+
+			<div class="category">Category:</div><div class="categoryHolder"><input type="text" name="category"></div>
+
+			<div class="subject">Subject:</div><div class="subjectHolder"><input type="text" name="subject"></div>
+
+			<div>For</div>
+			<div class="numbering">1. </div><div class="textHolder"><input type="text" name="take1"></div>
+			<div class="numbering">2. </div><div class="textHolder"><input type="text" name="take2"></div>
+			<div class="numbering">3. </div><div class="textHolder"><input type="text" name="take3"></div>
+
+			<div>Against</div>
+			<div class="numbering">1. </div><div class="textHolder"><input type="text" name="give1"></div>
+			<div class="numbering">2. </div><div class="textHolder"><input type="text" name="give2"></div>
+			<div class="numbering">3. </div><div class="textHolder"><input type="text" name="give3"></div>
+
+			<div>Final decision</div>
+			<div class="finalDecision">For</div><div class="radioHolder"><input type="radio" name="finalDecision"></div>
+			<div class="finalDecision">Against</div><div class="radioHolder"><input type="radio" name="finalDecision"></div>
+
+			<div class="comment">Comment</div><div class="textHolder"><textarea type="textarea" name="comment"></textarea></div>
+
+			<div><button id="saveButton" onclick="save()">Save</button></div>
+
+			<div><button id="updateButton" onclick="update()">Update</button></div>
+
+		</form>
+
+	</div>
+
+
+<script type="text/javascript">
+
+function help()
+{
+	// Click OK to fill all fields with sample data
+}
+
+
+var form = document.querySelector("form");
+
+var id = JSON.parse(localStorage.getItem("id"));
+
+if (id != null)
+{
+	decisionID = JSON.parse(localStorage.getItem("id"));
+
+	localStorage.setItem("id", JSON.stringify(null));
+
+	decisions = JSON.parse(localStorage.getItem("decisions"))
+
+	form.elements.subject.value = decisions[decisionID].subject;
+	form.elements.category.value = decisions[decisionID].category;
+	form.elements.take1.value = decisions[decisionID].take1;
+	form.elements.take2.value = decisions[decisionID].take2;
+	form.elements.take3.value = decisions[decisionID].take3;
+	form.elements.give1.value = decisions[decisionID].give1;
+	form.elements.give2.value = decisions[decisionID].give2;
+	form.elements.give3.value = decisions[decisionID].give3;
+	form.elements.finalDecision.value = decisions[decisionID].finalDecision;
+	form.elements.comment.value = decisions[decisionID].comment;
+
+	var saveButton = document.querySelector("#saveButton");
+
+	saveButton.style.display = "none";
+
+
+	var updateButton = document.querySelector("#updateButton");
+
+	updateButton.style.display = "inline";
+}
+
+function save()
+{
+	var subject = form.elements.subject.value;
+	var category = form.elements.category.value;
+	var take1 = form.elements.take1.value;
+	var take2 = form.elements.take2.value;
+	var take3 = form.elements.take3.value;
+	var give1 = form.elements.give1.value;
+	var give2 = form.elements.give2.value;
+	var give3 = form.elements.give3.value;
+	var finalDecision = form.elements.finalDecision.value;
+	var comment = form.elements.comment.value;
+
+	var decisions = [];
+
+	if (JSON.parse(localStorage.getItem("decisions")) != null)
+	{
+		decisions = JSON.parse(localStorage.getItem("decisions"));
+	}
+
+	decisions.push({category: category, subject: subject, take1: take1, take2: take2, take3: take3, give1: give1, give2: give2, give3: give3, finalDecision: finalDecision, comment: comment});
+
+	localStorage.setItem("decisions", JSON.stringify(decisions));
+
+	decisions = JSON.parse(localStorage.getItem("decisions"))
+}
+
+function update()
+{
+	var subject = form.elements.subject.value;
+	var category = form.elements.category.value;
+	var take1 = form.elements.take1.value;
+	var take2 = form.elements.take2.value;
+	var take3 = form.elements.take3.value;
+	var give1 = form.elements.give1.value;
+	var give2 = form.elements.give2.value;
+	var give3 = form.elements.give3.value;
+	var finalDecision = form.elements.finalDecision.value;
+	var comment = form.elements.comment.value;
+
+	var decisions = [];
+
+	if (JSON.parse(localStorage.getItem("decisions")) != null)
+	{
+		decisions = JSON.parse(localStorage.getItem("decisions"));
+	}
+
+	decisions[id] = {category: category, subject: subject, take1: take1, take2: take2, take3: take3, give1: give1, give2: give2, give3: give3, finalDecision: finalDecision, comment: comment};
+
+	localStorage.setItem("decisions", JSON.stringify(decisions));
+
+	decisions = JSON.parse(localStorage.getItem("decisions"))
+}
+
+</script>
+
+</body>
+</html>
+
