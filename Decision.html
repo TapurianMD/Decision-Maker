@@ -7,7 +7,7 @@
 .body
 {
 	text-align: center;
-	color: grey;
+	color: blue;
 }
 
 .decisionMaker
@@ -105,8 +105,8 @@
 			<div class="numbering">3. </div><div class="textHolder"><input type="text" name="give3"></div>
 
 			<div>Final decision</div>
-			<div class="finalDecision">For</div><div class="radioHolder"><input type="radio" name="finalDecision"></div>
-			<div class="finalDecision">Against</div><div class="radioHolder"><input type="radio" name="finalDecision"></div>
+			<div class="finalDecision">For</div><div class="radioHolder"><input type="radio" name="finalDecision" id="for"></div>
+			<div class="finalDecision">Against</div><div class="radioHolder"><input type="radio" name="finalDecision" id="against"></div>
 
 			<div class="comment">Comment</div><div class="textHolder"><textarea type="textarea" name="comment"></textarea></div>
 
@@ -117,7 +117,6 @@
 		</form>
 
 	</div>
-
 
 <script type="text/javascript">
 
@@ -147,6 +146,9 @@ if (id != null)
 	form.elements.give1.value = decisions[decisionID].give1;
 	form.elements.give2.value = decisions[decisionID].give2;
 	form.elements.give3.value = decisions[decisionID].give3;
+
+	document.getElementById(decisions[decisionID].finalDecision).checked = true;
+
 	form.elements.finalDecision.value = decisions[decisionID].finalDecision;
 	form.elements.comment.value = decisions[decisionID].comment;
 
@@ -170,7 +172,17 @@ function save()
 	var give1 = form.elements.give1.value;
 	var give2 = form.elements.give2.value;
 	var give3 = form.elements.give3.value;
-	var finalDecision = form.elements.finalDecision.value;
+
+	var finalDecision;
+	if (document.getElementById("for").checked)
+	{
+		finalDecision = "for";
+	}
+	else if (document.getElementById("against").checked)
+	{
+		finalDecision = "against";
+	}
+
 	var comment = form.elements.comment.value;
 
 	var decisions = [];
@@ -197,7 +209,17 @@ function update()
 	var give1 = form.elements.give1.value;
 	var give2 = form.elements.give2.value;
 	var give3 = form.elements.give3.value;
-	var finalDecision = form.elements.finalDecision.value;
+
+	var finalDecision;
+	if (document.getElementById("for").checked)
+	{
+		finalDecision = "for";
+	}
+	else if (document.getElementById("against").checked)
+	{
+		finalDecision = "against";
+	}
+
 	var comment = form.elements.comment.value;
 
 	var decisions = [];
