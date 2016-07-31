@@ -7,7 +7,7 @@
 .body
 {
 	text-align: center;
-	color: grey;
+	color: blue;
 }
 
 #decisionsView
@@ -28,7 +28,7 @@
 	height: 40px;
 }
 
-.headline
+#headline
 {
 	font-size: 30px;
 }
@@ -48,12 +48,12 @@
 </head>
 <body class="body">
 
-<div class="menu"><button onclick="help(1)">Help</button></div>
+<div class="menu"><button onclick="help()">Help</button></div>
 
 <div class="menu"><a href="Decision.html">New</a></div>
 
 <div id="decisionsView">
-	<div class="headline">All Decisions</div>
+	<div id="headline">All Decisions</div>
 </div>
 
 <script type="text/javascript">
@@ -98,61 +98,72 @@ function addSampleData()
 		decisions = JSON.parse(localStorage.getItem("decisions"));
 	}
 
-	decisions.push({category: "Investment", subject: "Property purchase", take1: "Low risk", take2: "Finance available", take3: "Essential need", give1: "Low margin", give2: "Time consuming", give3: "Not liquid", finalDecision: "For", comment: "10 will be purchased"});
+	decisions.push({category: "Investment", subject: "Property purchase", take1: "Low risk", take2: "Finance available", take3: "Essential need", give1: "Low margin", give2: "Time consuming", give3: "Not liquid", finalDecision: "for", comment: "10 will be purchased"});
 
-	decisions.push({category: "Food", subject: "Cooking", take1: "Tasty", take2: "Healthy", take3: "Tantamount to physical exercise", give1: "Will be nicknamed housewife", give2: "Time consuming", give3: "Could burn fingers", finalDecision: "For", comment: "My cat will be happy as well"});
+	decisions.push({category: "Food", subject: "Cooking", take1: "Tasty", take2: "Healthy", take3: "Tantamount to physical exercise", give1: "Will be nicknamed housewife", give2: "Time consuming", give3: "Could burn fingers", finalDecision: "for", comment: "My cat will find that tasty as well"});
 
 	localStorage.setItem("decisions", JSON.stringify(decisions));
 
 }
 
-	var decisions = [];
-	var categories = [];
+var decisions = [];
+var categories = [];
 
-	decisions = JSON.parse(localStorage.getItem("decisions"))
+decisions = JSON.parse(localStorage.getItem("decisions"))
 
-	var decisionsView = document.querySelector("#decisionsView");
+var headline = document.querySelector("#headline");
+
+if (decisions != undefined)
+{
+	headline.style.display = "inline-block";
+}
+else
+{
+	headline.style.display = "none";
+}
+
+var decisionsView = document.querySelector("#decisionsView");
 
 
-	var categoryView;
+var categoryView;
 
-	for (var i = 0; decisions[i] != undefined; i++)
+for (var i = 0; decisions[i] != undefined; i++)
+{
+	if (categories.indexOf(decisions[i].category) == -1)
 	{
-		if (categories.indexOf(decisions[i].category) == -1)
-		{
-			categories.push(decisions[i].category);
+		categories.push(decisions[i].category);
 
-			categoryView = document.createElement("div");
+		categoryView = document.createElement("div");
 
-			categoryView.id = decisions[i].category;
+		categoryView.id = decisions[i].category;
 
-			decisionsView.appendChild(categoryView);
+		decisionsView.appendChild(categoryView);
 
-			var categoryName = document.createElement("div")
+		var categoryName = document.createElement("div")
 
-			categoryName.textContent = decisions[i].category;
+		categoryName.textContent = decisions[i].category;
 
-			categoryView.appendChild(categoryName);
-		}
-
-		var decisionView = document.createElement("div");
-		var updateButton = document.createElement("a");
-		var removeButton = document.createElement("button");
-
-		updateButton.textContent =  decisions[i].subject;
-		updateButton.href = "Decision.html";
-		updateButton.id = "update";
-		updateButton.setAttribute("onclick", "update(" + i + ")");
-
-		removeButton.textContent =  "-";
-		removeButton.setAttribute("onclick", "remove(" + i + ")");
-
-		categoryView = document.querySelector("#" + decisions[i].category);
-
-		decisionView.appendChild(updateButton);
-		decisionView.appendChild(removeButton);
-		categoryView.appendChild(decisionView);
+		categoryView.appendChild(categoryName);
 	}
+
+	var decisionView = document.createElement("div");
+	var updateButton = document.createElement("a");
+	var removeButton = document.createElement("button");
+
+	updateButton.textContent =  decisions[i].subject;
+	updateButton.href = "Decision.html";
+	updateButton.id = "update";
+	updateButton.setAttribute("onclick", "update(" + i + ")");
+
+	removeButton.textContent =  "-";
+	removeButton.setAttribute("onclick", "remove(" + i + ")");
+
+	categoryView = document.querySelector("#" + decisions[i].category);
+
+	decisionView.appendChild(updateButton);
+	decisionView.appendChild(removeButton);
+	categoryView.appendChild(decisionView);
+}
 
 </script>
 
