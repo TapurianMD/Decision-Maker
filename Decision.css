@@ -1,0 +1,70 @@
+
+.decisionMaker
+{
+
+	text-align: left;
+	width: 500px;
+	display: inline-block;
+	height: 90%;
+}
+
+.category
+{
+	font-size: 30px;
+	display: inline-block;
+	width: 200px;
+}
+
+.categoryHolder
+{
+	display: inline-block;
+	width: 300px;
+}
+
+.subject
+{
+	display: inline-block;
+	width: 200px;
+}
+
+.subjectHolder
+{
+	display: inline-block;
+	width: 300px;
+}
+
+.numbering
+{
+	display: inline-block;
+	width: 200px;
+}
+
+.textHolder
+{
+	display: inline-block;
+	width: 300px;
+}
+
+.finalDecision
+{
+	display: inline-block;
+	width: 200px;
+}
+
+.radioHolder
+{
+	display: inline-block;
+	width: 300px;
+}
+
+.comment
+{
+	display: inline-block;
+	width: 200px;
+}
+
+#updateButton
+{
+	display: none;
+}
+
