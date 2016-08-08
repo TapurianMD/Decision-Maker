@@ -2,53 +2,18 @@
 
 <!doctype html>
 
-<style>
-
-.body
-{
-	text-align: center;
-	color: blue;
-}
-
-#decisionsView
-{
-	display: inline-block;
-	width: 300px;
-	text-align: left;
-}
-
-.decision
-{
-	display: inline-block;
-}
-
-.menu
-{
-	text-align: right;
-	height: 40px;
-}
-
-#headline
-{
-	font-size: 30px;
-}
-
-#update
-{
-	display: inline-block;
-	width: 270px;
-	text-align: left;
-}
-
-</style>
-
 <html>
 <head>
 	<title>Decision Maker - Overview</title>
+	<link href="Common.css" rel="stylesheet">
+	<link href="Index.css" rel="stylesheet">
 </head>
 <body class="body">
 
-<div class="menu"><button onclick="help()">Help</button></div>
+<div>
+	<div id="logo"><a id="logoLink" href="Index.html">Decision Maker</a></div>
+	<div class="help"><button onclick="help()">Help</button></div>
+</div>
 
 <div class="menu"><a href="Decision.html">New</a></div>
 
@@ -56,7 +21,28 @@
 	<div id="headline">All Decisions</div>
 </div>
 
+<div class="generalInfo">
+Copyright © 2016, Xerxes Langerudi. All rights reserved.
+</div>
+
 <script type="text/javascript">
+
+function addSampleData()
+{
+	var decisions = [];
+
+	if (JSON.parse(localStorage.getItem("decisions")) != null)
+	{
+		decisions = JSON.parse(localStorage.getItem("decisions"));
+	}
+
+	decisions.push({category: "Investment", subject: "Property purchase", take1: "Low risk", take2: "Finance available", take3: "Essential need", give1: "Low margin", give2: "Time consuming", give3: "Not liquid", finalDecision: "for", comment: "10 will be purchased"});
+
+	decisions.push({category: "Food", subject: "Cooking", take1: "Tasty", take2: "Healthy", take3: "Tantamount to physical exercise", give1: "Will be nicknamed housewife", give2: "Time consuming", give3: "Could burn fingers", finalDecision: "for", comment: "My cat will find that tasty as well"});
+
+	localStorage.setItem("decisions", JSON.stringify(decisions));
+
+}
 
 function help()
 {
@@ -87,23 +73,6 @@ function remove(id)
 function update(id)
 {
 	localStorage.setItem("id", JSON.stringify(id));
-}
-
-function addSampleData()
-{
-	var decisions = [];
-
-	if (JSON.parse(localStorage.getItem("decisions")) != null)
-	{
-		decisions = JSON.parse(localStorage.getItem("decisions"));
-	}
-
-	decisions.push({category: "Investment", subject: "Property purchase", take1: "Low risk", take2: "Finance available", take3: "Essential need", give1: "Low margin", give2: "Time consuming", give3: "Not liquid", finalDecision: "for", comment: "10 will be purchased"});
-
-	decisions.push({category: "Food", subject: "Cooking", take1: "Tasty", take2: "Healthy", take3: "Tantamount to physical exercise", give1: "Will be nicknamed housewife", give2: "Time consuming", give3: "Could burn fingers", finalDecision: "for", comment: "My cat will find that tasty as well"});
-
-	localStorage.setItem("decisions", JSON.stringify(decisions));
-
 }
 
 var decisions = [];
