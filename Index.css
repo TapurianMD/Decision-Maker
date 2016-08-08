@@ -1,0 +1,34 @@
+
+#decisionsView
+{
+	display: inline-block;
+	width: 300px;
+	text-align: left;
+	height: 82%;
+}
+
+.decision
+{
+	display: inline-block;
+}
+
+.menu
+{
+	text-align: left;
+	height: 40px;
+	width: 95%;
+	display: inline-block;
+}
+
+#headline
+{
+	font-size: 30px;
+}
+
+#update
+{
+	display: inline-block;
+	width: 270px;
+	text-align: left;
+}
+
