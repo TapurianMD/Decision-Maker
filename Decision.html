@@ -2,89 +2,18 @@
 
 <!doctype html>
 
-<style>
-
-.body
-{
-	text-align: center;
-	color: blue;
-}
-
-.decisionMaker
-{
-
-	text-align: left;
-	width: 500px;
-	display: inline-block;
-}
-
-.category
-{
-	font-size: 30px;
-	display: inline-block;
-	width: 200px;
-}
-
-.categoryHolder
-{
-	display: inline-block;
-	width: 300px;
-}
-
-.subject
-{
-	display: inline-block;
-	width: 200px;
-}
-
-.subjectHolder
-{
-	display: inline-block;
-	width: 300px;
-}
-
-.numbering
-{
-	display: inline-block;
-	width: 200px;
-}
-
-.textHolder
-{
-	display: inline-block;
-	width: 300px;
-}
-
-.finalDecision
-{
-	display: inline-block;
-	width: 200px;
-}
-
-.radioHolder
-{
-	display: inline-block;
-	width: 300px;
-}
-
-.comment
-{
-	display: inline-block;
-	width: 200px;
-}
-
-#updateButton
-{
-	display: none;
-}
-
-</style>
-
 <html>
 <head>
 	<title>Decision Maker</title>
+	<link href="Common.css" rel="stylesheet">
+	<link href="Decision.css" rel="stylesheet">
 </head>
 <body class="body">
+
+<div>
+	<div id="logo"><a id="logoLink" href="Index.html">Decision Maker</a></div>
+	<div class="help"><button onclick="help()">Help</button></div>
+</div>
 
 	<div class="decisionMaker">
 
@@ -118,15 +47,35 @@
 
 	</div>
 
+<div class="generalInfo">
+Copyright © 2016, Xerxes Langerudi. All rights reserved.
+</div>
+
 <script type="text/javascript">
+
+var form = document.querySelector("form");
 
 function help()
 {
-	// Click OK to fill all fields with sample data
+	if (confirm("Click OK to fill all fields with sample data"))
+	{
+		// addSampleData();
+
+		form.elements.subject.value = "Property purchase";
+		form.elements.category.value = "Investment";
+		form.elements.take1.value = "Low risk";
+		form.elements.take2.value = "Finance available";
+		form.elements.take3.value = "Essential need";
+		form.elements.give1.value = "Low margin";
+		form.elements.give2.value = "Time consuming";
+		form.elements.give3.value = "Not liquid";
+
+		document.getElementById("for").checked = true;
+
+		form.elements.comment.value = "10 will be purchased";
+	}
 }
 
-
-var form = document.querySelector("form");
 
 var id = JSON.parse(localStorage.getItem("id"));
 
@@ -149,7 +98,6 @@ if (id != null)
 
 	document.getElementById(decisions[decisionID].finalDecision).checked = true;
 
-	form.elements.finalDecision.value = decisions[decisionID].finalDecision;
 	form.elements.comment.value = decisions[decisionID].comment;
 
 	var saveButton = document.querySelector("#saveButton");
