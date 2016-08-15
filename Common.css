@@ -28,11 +28,28 @@ html, body
 	display: inline-block;
 }
 
+.menu
+{
+	text-align: left;
+	height: 40px;
+	width: 95%;
+	display: inline-block;
+}
+
+#variation
+{
+	display: inline-block;
+	width: 500px;
+	text-align: left;
+	height: 82%;
+}
+
 .generalInfo
 {
 	background-color: fuchsia;
 	color: white;
 	width: 100%;
 	margin-top: 3%;
+	padding: 3px;
 }
 
