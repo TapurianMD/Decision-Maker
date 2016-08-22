@@ -12,41 +12,37 @@
 
 <div>
 	<div id="logo"><a id="logoLink" href="Index.html">Decision Maker</a></div>
-	<div class="help"><button onclick="help()">Help</button></div>
+	<div class="helpHolder"><button class="help" onclick="help()">Help</button></div>
 </div>
 
 <div class="menu"><a href="Decision.html">New</a></div>
-
 	<div id="variation">
-
 		<form method="post">
+			<div class="category">Category:</div><div class="categoryHolder"><input class="categoryInput" type="text" name="category"></div>
 
-			<div class="category">Category:</div><div class="categoryHolder"><input type="text" name="category"></div>
-
-			<div class="subject">Subject:</div><div class="subjectHolder"><input type="text" name="subject"></div>
+			<div class="subject">Subject:</div><div class="subjectHolder"><input class="subjectInput" type="text" name="subject"></div>
 
 			<div>For</div>
-			<div class="numbering">1. </div><div class="textHolder"><input type="text" name="take1"></div>
-			<div class="numbering">2. </div><div class="textHolder"><input type="text" name="take2"></div>
-			<div class="numbering">3. </div><div class="textHolder"><input type="text" name="take3"></div>
+			<div class="forNumbering">1. </div><div class="textHolder"><input class="forInput" type="text" name="take1"></div>
+			<div class="forNumbering">2. </div><div class="textHolder"><input class="forInput" type="text" name="take2"></div>
+			<div class="forNumbering">3. </div><div class="textHolder"><input class="forInput" type="text" name="take3"></div>
 
 			<div>Against</div>
-			<div class="numbering">1. </div><div class="textHolder"><input type="text" name="give1"></div>
-			<div class="numbering">2. </div><div class="textHolder"><input type="text" name="give2"></div>
-			<div class="numbering">3. </div><div class="textHolder"><input type="text" name="give3"></div>
+			<div class="againstNumbering">1. </div><div class="textHolder"><input class="againstInput" type="text" name="give1"></div>
+			<div class="againstNumbering">2. </div><div class="textHolder"><input class="againstInput" type="text" name="give2"></div>
+			<div class="againstNumbering">3. </div><div class="textHolder"><input class="againstInput" type="text" name="give3"></div>
 
 			<div>Final decision</div>
 			<div class="finalDecision">For</div><div class="radioHolder"><input type="radio" name="finalDecision" id="for"></div>
 			<div class="finalDecision">Against</div><div class="radioHolder"><input type="radio" name="finalDecision" id="against"></div>
 
-			<div class="comment">Comment</div><div class="textHolder"><textarea type="textarea" name="comment"></textarea></div>
+			<div class="comment">Comment</div><div class="textHolder"><textarea class="commentText" type="textarea" name="comment"></textarea></div>
 
-			<div><button id="saveButton" onclick="save()">Save</button></div>
-
-			<div><button id="updateButton" onclick="update()">Update</button></div>
-
+			<div class="buttonHolder">
+				<button id="saveButton" onclick="save()">Save</button>
+				<button id="updateButton" onclick="update()">Update</button>
+			</div>
 		</form>
-
 	</div>
 
 <div class="generalInfo">
@@ -55,26 +51,29 @@ Copyright © 2016, Xerxes Langerudi. All rights reserved.
 
 <script type="text/javascript">
 
+function addSampleData()
+{
+	form.elements.subject.value = "Property purchase";
+	form.elements.category.value = "Investment";
+	form.elements.take1.value = "Low risk";
+	form.elements.take2.value = "Finance available";
+	form.elements.take3.value = "Essential need";
+	form.elements.give1.value = "Low margin";
+	form.elements.give2.value = "Time consuming";
+	form.elements.give3.value = "Not liquid";
+
+	document.getElementById("for").checked = true;
+
+	form.elements.comment.value = "10 will be purchased";
+}
+
 var form = document.querySelector("form");
 
 function help()
 {
 	if (confirm("Click OK to fill all fields with sample data"))
 	{
-		// addSampleData();
-
-		form.elements.subject.value = "Property purchase";
-		form.elements.category.value = "Investment";
-		form.elements.take1.value = "Low risk";
-		form.elements.take2.value = "Finance available";
-		form.elements.take3.value = "Essential need";
-		form.elements.give1.value = "Low margin";
-		form.elements.give2.value = "Time consuming";
-		form.elements.give3.value = "Not liquid";
-
-		document.getElementById("for").checked = true;
-
-		form.elements.comment.value = "10 will be purchased";
+		addSampleData();
 	}
 }
 
