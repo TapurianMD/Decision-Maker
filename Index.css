@@ -16,3 +16,10 @@
 	text-align: left;
 }
 
+#remove
+{
+	border: 1px solid darkred;
+	background-color: white;
+	color: darkred;
+}
+
