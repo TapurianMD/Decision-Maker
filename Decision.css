@@ -6,6 +6,11 @@
 	width: 200px;
 }
 
+.categoryInput
+{
+	color: blue;
+}
+
 .categoryHolder
 {
 	display: inline-block;
@@ -18,22 +23,50 @@
 	width: 200px;
 }
 
+.subjectInput
+{
+	color: blue;
+}
+
 .subjectHolder
 {
 	display: inline-block;
 	width: 300px;
 }
 
-.numbering
+.forNumbering
 {
 	display: inline-block;
 	width: 200px;
+	color: darkblue;
+}
+
+.againstNumbering
+{
+	display: inline-block;
+	width: 200px;
+	color: darkred;
 }
 
 .textHolder
 {
 	display: inline-block;
 	width: 300px;
+}
+
+.commentText
+{
+	color: blue
+}
+
+.forInput
+{
+	color: darkblue;
+}
+
+.againstInput
+{
+	color: darkred;
 }
 
 .finalDecision
@@ -57,5 +90,23 @@
 #updateButton
 {
 	display: none;
+	border: 2px solid darkblue;
+	color: darkblue;
+	background-color: white;
+}
+
+#saveButton
+{
+	border: 2px solid darkblue;
+	color: darkblue;
+	background-color: white;
+}
+
+.buttonHolder
+{
+	display: inline-block;
+	width: 420px;
+	text-align: right;
+	padding: 20px;
 }
 
