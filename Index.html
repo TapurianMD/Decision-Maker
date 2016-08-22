@@ -12,13 +12,12 @@
 
 <div>
 	<div id="logo"><a id="logoLink" href="Index.html">Decision Maker</a></div>
-	<div class="help"><button onclick="help()">Help</button></div>
+	<div class="helpHolder"><button class="help" onclick="help()">Help</button></div>
 </div>
 
 <div class="menu"><a href="Decision.html">New</a></div>
 
 <div id="variation">
-
 	<div id="headline">All Decisions</div>
 </div>
 
@@ -126,6 +125,7 @@ for (var i = 0; decisions[i] != undefined; i++)
 	updateButton.setAttribute("onclick", "update(" + i + ")");
 
 	removeButton.textContent =  "-";
+	removeButton.id = "remove";
 	removeButton.setAttribute("onclick", "remove(" + i + ")");
 
 	categoryView = document.querySelector("#" + decisions[i].category);
